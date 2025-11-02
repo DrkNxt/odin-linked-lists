@@ -147,7 +147,11 @@ class LinkedList {
 
     let node = this._head;
     if (index === 0) {
-      this._head = new Node(value, node);
+      let newNode = new Node(value, node);
+      if (this._head.nextNode === null) {
+        this._tail = newNode;
+      }
+      this._head = newNode;
       this._size++;
       return;
     }
@@ -166,6 +170,9 @@ class LinkedList {
     if (index < 0 || index >= this._size) {
       return;
     } else if (index === 0) {
+      if (this._head.nextNode === null) {
+        this._tail = null;
+      }
       this._head = this._head.nextNode;
       this._size--;
       return;
